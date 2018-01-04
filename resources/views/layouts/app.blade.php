@@ -16,10 +16,23 @@
     <body>
       <div id="app">
         @include('inc.nav')
-          @yield('content')
-          <br>
-          <div class="ui divider"></div>
-        @include('inc.footer')
+        <div class="ui container">
+          <div class="ui grid">
+          <div class="three wide column">
+            @include('inc.sidemenubar')
+          </div>
+          <div class="thirteen wide column">
+            @yield('content')
+          </div>
+
+        </div>
+      </div>
+      {{-- <div class="ui fluid container">
+  @include('inc.footer')
+      </div>
+
+          {{-- <div class="ui divider"></div> --}}
+
       </div>
       <script src="{{ asset('js/app.js') }}"></script>
     </body>

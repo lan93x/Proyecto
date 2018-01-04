@@ -14,7 +14,20 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('categorias.index');
+        $categorias = Categoria::orderBy('id', 'DESC')->paginate(1);
+        //     return [
+        //   'pagination'=>[
+        //     'total'=> $categorias->total(),
+        //     'current_page' => $categorias->currentPage(),
+        //     'per_page' => $categorias->perPage(),
+        //     'last_page' => $categorias->lastPage(),
+        //     'from'=> $categorias->firstItem(),
+        //     'to'=> $categorias->lastPage(),
+        //   ],
+        //   'categorias' => $categorias
+        // ];
+        //return view('categorias.index');
+        //return view('categorias.index', ['categorias' => $categorias]);
     }
 
     /**
@@ -96,7 +109,7 @@ class CategoriaController extends Controller
 
     public function getCategorias(Request $request)
     {
-        $categorias = Categoria::orderBy('id', 'DESC')->paginate(5);
+        $categorias = Categoria::orderBy('id', 'DESC')->paginate(1);
         //   $data2 = [];
         //   $contador=0;
         //   $data2[] = [

@@ -1,4 +1,4 @@
-{{-- <div class="ui basic modal">
+<div class="ui basic modal">
   <div class="ui icon header">
     <i class="archive icon"></i>
     <br>
@@ -15,4 +15,4 @@
       Aceptar
     </div>
   </div>
-</div> --}}
+</div>

@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\datos;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,15 +12,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+//Generar datos
 Route::get('/datos/install', 'datos@Datosprueba');
+//Home
+Route::get('/getLastAnnounces', 'HomeController@getLastAnnounces');
+Route::get('/getSideMenu', 'HomeController@getSideMenu');
+Route::get('/', function () {
+    return view('index');
+});
+//Anuncios
+Route::get('/getAnnouncesByCategory', 'AnnounceController@getAnnouncesByCategory');
+Route::get('/{Category}/B46-{Letra}{id}', 'AnnounceController@index');
+Route::get('/getAnnouncesBySubcategory/{id}', 'AnnounceController@getAnnouncesBySubcategory');
 
-//Categorias
+
+//Categorias{}
 Route::get('/categorias/getCategorias', 'CategoriaController@getCategorias');
-Route::resource('categorias', 'CategoriaController');
-Route::resource('brand', 'BrandController');
+Route::get('/categorias', 'CategoriaController@index');
+//Route::resource('categorias', 'CategoriaController');
+//Route::resource('brand', 'BrandController');
 
 
 Auth::routes();
