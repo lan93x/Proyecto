@@ -11,7 +11,7 @@
         <div class="six wide column">
             <h2 class="ui teal image header">
                 <div class="content">
-                    Resetear contraseña
+                    Log-in to your account
                 </div>
             </h2>
             <form action="{{ route('password.request') }}" class="ui large form" method="POST">
@@ -42,7 +42,7 @@
                         </input>
                     </div>
                     <div class="field{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <input  id="password-confirm" name="password_confirmation" required="" type="password">
+                        <input id="password-confirm" name="password_confirmation" required="" type="password">
                             @if ($errors->has('password_confirmation'))
                             <span class="help-block">
                                 <strong>
@@ -55,7 +55,7 @@
                     <div class="fui stacked segment">
                         <div class="field">
                             <button class="ui fluid large teal submit button" type="submit">
-                                enviar enlace de restablecimiento de contraseña
+                                Resetear Contraseña
                             </button>
                         </div>
                     </div>
