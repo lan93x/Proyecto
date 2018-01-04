@@ -10,7 +10,7 @@ use App\Http\Controllers\datos;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 //Generar datos
 Route::get('/datos/install', 'datos@Datosprueba');
@@ -32,7 +32,5 @@ Route::get('/categorias', 'CategoriaController@index');
 //Route::resource('categorias', 'CategoriaController');
 //Route::resource('brand', 'BrandController');
 
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

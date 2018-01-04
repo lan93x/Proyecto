@@ -23,5 +23,6 @@ mix.scripts([
   .styles([
     'semantic/dist/semantic.min.css',
     'resources/assets/css/toastr.css',
+    'resources/assets/css/default.css',
   ], 'public/css/app.css')
   .fonts;
