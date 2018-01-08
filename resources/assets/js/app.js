@@ -170,6 +170,7 @@ new Vue({
     detannounce: [],
     // images: [],
     comments: [],
+    mensaje: '',
   },
   methods: {
     getDetailAnnounce: function() {
@@ -180,6 +181,9 @@ new Vue({
       axios.get(urlAnnounce).then(response => {
           this.detannounce = response.data.anuncio
           this.comments = response.data.comentarios
+          if (this.comments == 0) {
+            this.mensaje = 'Se el primero en comentar!'
+          }
         })
         .catch(function(error) {
           console.log(error);

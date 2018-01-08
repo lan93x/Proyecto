@@ -128,11 +128,12 @@
 <p>@{{ announce.description }}</p>
 </div>
 <div class="sixteen wide column">
-  <div class="ui minimal comments" style="max-width: 100%">
+  <div class="ui comments" style="max-width: 100%">
     <h4 class="ui horizontal divider header">
   <i class="comments icon"></i>
   Comentarios
 </h4>
+<h3>@{{ mensaje }}</h3>
     <div class="comment" v-for='comment in comments'>
       <a class="avatar">
         <img :src="comment.users.avatar">
@@ -162,21 +163,27 @@
             <div class="text">
               @{{ replie.text}}
             </div>
-            <div class="actions">
+            {{-- <div class="actions">
               <a class="reply">Responder</a>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
     </div>
-    <form class="ui reply form">
-      <div class="field">
-        <textarea></textarea>
-      </div>
-      <div class="ui blue labeled submit icon button">
-        <i class="icon edit"></i> Comentar
-      </div>
-    </form>
+    @if(Route::has('login'))
+      @auth
+        <form class="ui reply form">
+          <div class="field">
+            <textarea></textarea>
+          </div>
+          <div class="ui blue labeled submit icon button">
+            <i class="icon edit"></i> Enviar Comentario
+          </div>
+        </form>
+      @else
+        <h3>Debes iniciar sesion para poder comentar</h3>
+      @endauth
+    @endif
   </div>
 </div>
 </div>
