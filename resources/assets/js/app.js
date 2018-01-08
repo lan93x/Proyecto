@@ -1,3 +1,8 @@
+$(document).ready(function() {
+  $('.menu .item')
+    .tab();
+});
+
 new Vue({
   el: '#sidemenu',
   created: function() {
@@ -24,77 +29,6 @@ new Vue({
   el: '#index',
   created: function() {
     this.getAnuncios();
-  },
-  data: {
-    anuncios: [],
-    pagination: {
-      'total': 0,
-      'current_page': 0,
-      'per_page': 0,
-      'last_page': 0,
-      'from': 0,
-      'to': 0,
-    },
-  },
-  computed: {
-    isActived: function() {
-      return this.pagination.current_page;
-    },
-    pagesNumber: function() {
-      if (!this.pagination.to) {
-        return [];
-      }
-      var from = this.pagination.current_page - 2;
-      if (from < 1) {
-        from = 1;
-      }
-      var to = from + (2 * 2);
-      if (to >= this.pagination.last_page) {
-        to = this.pagination.last_page
-      }
-
-      var pagesArray = [];
-      while (from <= to) {
-        pagesArray.push(from);
-        from++
-      }
-      return pagesArray;
-    }
-  },
-  methods: {
-    getAnuncios: function(page) {
-      var urlAnuncios = '/getLastAnnounces';
-      axios.get(urlAnuncios).then(response => {
-        this.anuncios = response.data
-        //this.pagination = response.data.pagination
-      });
-
-    },
-    changePage: function(page) {
-      this.pagination.current_page = page;
-      this.getCategorias(page);
-    }
-    // getAnnouncesByCategory: function() {
-    //   axios.get('/Vehiculo', {
-    //       params: {
-    //         id: ''
-    //       }
-    //     })
-    //     .then(function(response) {
-    //       this.anuncios = response.data.anuncios.data,
-    //         this.pagination = response.data.pagination
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // }
-  }
-
-});
-new Vue({
-  el: '#announce',
-  created: function() {
-    this.getAnnouncesByCategory();
   },
   data: {
     announces: [],
@@ -133,12 +67,89 @@ new Vue({
     }
   },
   methods: {
-    getAnnouncesByCategory: function() {
+    getAnuncios: function(page) {
+      var urlAnuncios = '/getLastAnnounces';
+      axios.get(urlAnuncios).then(response => {
+        this.announces = response.data
+        //this.pagination = response.data.pagination
+      });
+
+    },
+    changePage: function(page) {
+      this.pagination.current_page = page;
+      this.getCategorias(page);
+    }
+    // getAnnouncesByCategory: function() {
+    //   axios.get('/Vehiculo', {
+    //       params: {
+    //         id: ''
+    //       }
+    //     })
+    //     .then(function(response) {
+    //       this.anuncios = response.data.anuncios.data,
+    //         this.pagination = response.data.pagination
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error);
+    //     });
+    // }
+  }
+
+});
+new Vue({
+  el: '#announce',
+  created: function() {
+    this.getAnnouncesByCatorSub();
+  },
+  data: {
+    announces: [],
+    pagination: {
+      'total': 0,
+      'current_page': 0,
+      'per_page': 0,
+      'last_page': 0,
+      'from': 0,
+      'to': 0,
+    },
+  },
+  computed: {
+    isActived: function() {
+      return this.pagination.current_page;
+    },
+    pagesNumber: function() {
+      if (!this.pagination.to) {
+        return [];
+      }
+      var from = this.pagination.current_page - 2;
+      if (from < 1) {
+        from = 1;
+      }
+      var to = from + (2 * 2);
+      if (to >= this.pagination.last_page) {
+        to = this.pagination.last_page
+      }
+
+      var pagesArray = [];
+      while (from <= to) {
+        pagesArray.push(from);
+        from++
+      }
+      return pagesArray;
+    }
+  },
+  methods: {
+    getAnnouncesByCatorSub: function() {
       var location = window.location.href;
       var n = location.search("-");
       var id = location.slice(n + 2);
-      console.log(id);
-      var urlAnnounce = '/getAnnouncesBySubcategory/' + id;
+      var cat = location.slice(n + 1);
+      var cat1 = cat.slice(0, 1);
+      var urlAnnounce = '';
+      if (cat1 == 'S') {
+        urlAnnounce = '/getAnnouncesBySubcategory/' + id;
+      } else {
+        urlAnnounce = '/getAnnouncesByCategory/' + id;
+      }
       axios.get(urlAnnounce).then(response => {
           this.announces = response.data.anuncios.data,
             this.pagination = response.data.pagination
@@ -146,12 +157,36 @@ new Vue({
         .catch(function(error) {
           console.log(error);
         });
-
     }
   }
 
-})
-
+});
+new Vue({
+  el: '#detAnnounce',
+  created: function() {
+    this.getDetailAnnounce();
+  },
+  data: {
+    detannounce: [],
+    // images: [],
+    comments: [],
+  },
+  methods: {
+    getDetailAnnounce: function() {
+      var location = window.location.href;
+      var n = location.search("@");
+      var id = location.slice(n + 1);
+      urlAnnounce = '/getDetailAnnounce/' + id;
+      axios.get(urlAnnounce).then(response => {
+          this.detannounce = response.data.anuncio
+          this.comments = response.data.comentarios
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+  }
+});
 // new Vue({
 //   el: '#categoria',
 //   created: function() {

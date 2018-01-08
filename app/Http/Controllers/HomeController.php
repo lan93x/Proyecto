@@ -47,6 +47,8 @@ class HomeController extends Controller
           'Category.name As category',
           'Subcategory.name As subcategory',
           'Announce.title',
+          'Announce.id',
+          'Announce.description',
           'Announce.price As price',
           'Pro_product.year',
           'Pro_product.milleage',
@@ -59,31 +61,11 @@ class HomeController extends Controller
         ->take(5)
         ->get();
         return $anuncios;
-        //   return [
-      //   'pagination'=>[
-      //     'total'=> 1,
-      //     'current_page' => 1,
-      //     'per_page' => 1,
-      //     'last_page' =>1,
-      //     'from'=> 1,
-      //     'to'=> 1,
-      //   ],
-      //   'anuncios' => $anuncios
-      // ];
     }
 
     public function getSideMenu()
     {
-        //   $subcategories = DB::table('Category')
-        // ->join('Subcategory', 'Category.id', 'Subcategory.category_id')
-        // ->select(
-        //   'Category.name As category',
-        //   'Subcategory.name As subcategory'
-        //   )
-        // ->get();
-
         $subcategories=Category::with('subcategories')->get();
-
         return $subcategories;
     }
 }

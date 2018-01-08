@@ -11,9 +11,25 @@ use App\Http\Controllers\datos;
 | contains the "web" middleware group. Now create something great!
 |
  */
+ Route::get('/ola', function () {
+     return view('ola');
+ });
+
+ Route::get('/wel', function () {
+     return view('welcome');
+ });
+ Route::get('auth/face', function () {
+     return view('facebook');
+ });
+ Auth::routes();
+
+ //autentificacion con facebook
+ Route::get('/auth/facebook', 'SocialAuthController@facebook');
+ Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+ // Route::post('/auth/facebook/register','SocialAuthController@register');
 
 //Generar datos
-Route::get('/datos/install', 'datos@Datosprueba');
+Route::get('/install', 'DataController@TestData');
 //Home
 Route::get('/getLastAnnounces', 'HomeController@getLastAnnounces');
 Route::get('/getSideMenu', 'HomeController@getSideMenu');
@@ -21,10 +37,11 @@ Route::get('/', function () {
     return view('index');
 });
 //Anuncios
-Route::get('/getAnnouncesByCategory', 'AnnounceController@getAnnouncesByCategory');
 Route::get('/{Category}/B46-{Letra}{id}', 'AnnounceController@index');
+Route::get('/getAnnouncesByCategory/{id}', 'AnnounceController@getAnnouncesByCategory');
 Route::get('/getAnnouncesBySubcategory/{id}', 'AnnounceController@getAnnouncesBySubcategory');
-
+Route::get('/Anuncio/@{id}', 'AnnounceController@detAnnounce');
+Route::get('/getDetailAnnounce/{id}', 'AnnounceController@getDetailAnnounce');
 
 //Categorias{}
 Route::get('/categorias/getCategorias', 'CategoriaController@getCategorias');

@@ -8,6 +8,7 @@ class CreateForeignKeys extends Migration
 {
     public function up()
     {
+        //Esta es la migracion oficial de llaves foraneas
         Schema::table('Subcategory', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('Category')
                         ->onDelete('restrict')
@@ -63,10 +64,40 @@ class CreateForeignKeys extends Migration
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
         });
+        Schema::table('Announce', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
+        });
         Schema::table('Pro_file', function (Blueprint $table) {
             $table->foreign('product_id')->references('id')->on('PRO_Product')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
+        });
+        Schema::table('Pro_file', function (Blueprint $table) {
+            $table->foreign('typefile_id')->references('id')->on('Typefile')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
+        });
+        Schema::table('Comment', function (Blueprint $table) {
+            $table->foreign('announce_id')->references('id')->on('Announce')
+                                ->onDelete('restrict')
+                                ->onUpdate('restrict');
+        });
+        Schema::table('Comment', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                                ->onDelete('restrict')
+                                ->onUpdate('restrict');
+        });
+        Schema::table('Reply', function (Blueprint $table) {
+            $table->foreign('comment_id')->references('id')->on('Comment')
+                                ->onDelete('restrict')
+                                ->onUpdate('restrict');
+        });
+        Schema::table('Reply', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')
+                                ->onDelete('restrict')
+                                ->onUpdate('restrict');
         });
     }
 
@@ -105,8 +136,26 @@ class CreateForeignKeys extends Migration
         Schema::table('Announce', function (Blueprint $table) {
             $table->dropForeign('Announce_subcategory_id_foreign');
         });
+        Schema::table('Announce', function (Blueprint $table) {
+            $table->dropForeign('Announce_user_id_foreign');
+        });
         Schema::table('Pro_file', function (Blueprint $table) {
             $table->dropForeign('Pro_file_product_id_foreign');
+        });
+        Schema::table('Pro_file', function (Blueprint $table) {
+            $table->dropForeign('Pro_file_typefile_id_foreign');
+        });
+        Schema::table('Comment', function (Blueprint $table) {
+            $table->dropForeign('Comment_announce_id_foreign');
+        });
+        Schema::table('Comment', function (Blueprint $table) {
+            $table->dropForeign('Comment_user_id_foreign');
+        });
+        Schema::table('Reply', function (Blueprint $table) {
+            $table->dropForeign('Reply_comment_id_foreign');
+        });
+        Schema::table('Reply', function (Blueprint $table) {
+            $table->dropForeign('Reply_user_id_foreign');
         });
     }
 }

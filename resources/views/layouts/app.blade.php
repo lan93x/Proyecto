@@ -17,15 +17,12 @@
       <div id="app">
         @include('inc.nav')
         <div class="ui container">
-          <div class="ui grid">
-          <div class="three wide column">
-            @include('inc.sidemenubar')
-          </div>
-          <div class="thirteen wide column">
+          
             @yield('content')
-          </div>
 
-        </div>
+
+
+
       </div>
       {{-- <div class="ui fluid container">
   @include('inc.footer')

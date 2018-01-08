@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialProfile::class);
     }
+
+    public function Comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
