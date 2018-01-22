@@ -1,7 +1,12 @@
+
+
 $(document).ready(function() {
   $('.menu .item')
     .tab();
 });
+
+
+
 
 new Vue({
   el: '#sidemenu',
@@ -155,7 +160,7 @@ new Vue({
             this.pagination = response.data.pagination
         })
         .catch(function(error) {
-          console.log(error);
+          // console.log(error);
         });
     }
   }
@@ -186,11 +191,13 @@ new Vue({
           }
         })
         .catch(function(error) {
-          console.log(error);
+          // console.log(error);
         });
     }
   }
 });
+
+
 // new Vue({
 //   el: '#categoria',
 //   created: function() {
@@ -321,3 +328,8 @@ new Vue({
 //     }
 //   }
 // });
+$('.filtro')
+  .dropdown({
+    allowCategorySelection: true
+  })
+;

@@ -21,10 +21,12 @@ mix.scripts([
     'resources/assets/js/axios.js',
     'resources/assets/js/app.js',
   ], 'public/js/app.js')
+  .js('resources/assets/js/comp.js',
+      'public/js/comp.js')
   .styles([
     'semantic/dist/semantic.min.css',
     'resources/assets/css/toastr.css',
     'resources/assets/css/fotorama.css',
     'resources/assets/css/default.css',
   ], 'public/css/app.css')
-  .fonts;
+   .fonts;

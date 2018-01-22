@@ -1,5 +1,5 @@
 <div class="ui large top hidden menu">
-    <div class="ui container">
+    <div class="ui container fluid">
         <a class="active item" href="{{ url('/') }}">
             {{ config('APP_NAME', 'Elproyecto') }}
         </a>

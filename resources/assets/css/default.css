@@ -1,3 +1,26 @@
 .margen-auth {
     margin-top: 10px !important;
 }
+.ui.vertical.menu {
+    width: 100%;
+}
+.content {
+    width: 100%;
+}
+.font-size-table {
+    font-size: 15px;
+}
+.size-button {
+    width: 100%;
+}
+@media only screen and (min-width: 320px) {
+    .ui.card {
+        width: 100%;
+    }
+}
+/*@media only screen and (max-width: 768px) {*/
+
+.center-price {
+    text-align: center !important;
+}
+/*}*/
